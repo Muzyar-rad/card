@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
 import {
   Card,
   CardActions,
@@ -14,18 +15,19 @@ import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
+    textAlign: "center",
   },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
-    transform: "scale(0.8)",
+    transform: "scale(1.5)",
   },
   title: {
     fontSize: 14,
   },
   expand: {
     transform: "rotate(0deg)",
-    marginLeft: "auto",
+    margin: "auto",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
@@ -39,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const CardUser = () => {
   const [data, setData] = useState({});
+  const [address, setAddress] = useState({});
+  const [company, setCompany] = useState({});
   const [expanded, setExpanded] = React.useState(false);
 
   useEffect(() => {
@@ -48,11 +52,13 @@ const CardUser = () => {
       });
       const response = await res.json();
       setData(response);
+      setAddress(response.address);
+      setCompany(response.company);
     };
     getResult();
   }, []);
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  const bull = <span className={classes.bullet}>____________________</span>;
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -64,13 +70,15 @@ const CardUser = () => {
           color="textSecondary"
           gutterBottom
         >
-          Word of the Day
+          {company.catchPhrase}
         </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
+        <Typography>{bull}</Typography>
+        <Typography mt="17px" variant="h5" component="h2">
+          {company.name}
         </Typography>
+        <Typography>{bull}</Typography>
         <Typography className={classes.pos} color="textSecondary">
-          adjective
+          {data.phone} {"/"} {data.email}
         </Typography>
         <Typography variant="body2" component="p">
           well meaning and kindly.
@@ -92,7 +100,13 @@ const CardUser = () => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
+          <Typography variant="body2" component="p">
+            {address.suite} {address.street}
+            <br />
+            {address.city}
+            <br />
+            {address.zipcode}
+          </Typography>
         </CardContent>
       </Collapse>
     </Card>

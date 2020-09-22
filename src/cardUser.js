@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {
   Card,
   CardActions,
   CardContent,
+  Collapse,
   Typography,
   IconButton,
 } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import clsx from "clsx";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
   },
@@ -22,10 +23,20 @@ const useStyles = makeStyles({
   title: {
     fontSize: 14,
   },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
+  },
   pos: {
     marginBottom: 12,
   },
-});
+}));
 const CardUser = () => {
   const [data, setData] = useState({});
   const [expanded, setExpanded] = React.useState(false);
@@ -79,6 +90,11 @@ const CardUser = () => {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Method:</Typography>
+        </CardContent>
+      </Collapse>
     </Card>
   );
 };

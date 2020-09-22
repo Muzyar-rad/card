@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
     textAlign: "center",
+    backgroundColor: "#000051",
+    color: "#80d8ff",
   },
   bullet: {
     display: "inline-block",
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     margin: "auto",
+    color: "#80d8ff",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
@@ -85,10 +88,11 @@ const CardUser = () => {
         <Typography className={classes.phoneEmailStyle}>
           {data.phone} {"/"} {data.email}
         </Typography>
+        <Typography variant="h6" component="p">
+          {data.name}
+        </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          {data.website}
         </Typography>
       </CardContent>
       <CardActions>

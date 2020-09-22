@@ -1,11 +1,11 @@
 import React from "react";
-import Card from "./card";
+import CardUser from "./cardUser";
 
 function App() {
   return (
     <div className="App">
       <React.Fragment>
-        <Card />
+        <CardUser />
       </React.Fragment>
     </div>
   );

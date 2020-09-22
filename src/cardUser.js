@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { spacing } from "@material-ui/system";
 import {
   Card,
   CardActions,
@@ -22,9 +21,11 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 2px",
     transform: "scale(1.5)",
   },
-  title: {
+  catchPhraseStyle: {
     fontSize: 14,
+    marginBottom: -10,
   },
+
   expand: {
     transform: "rotate(0deg)",
     margin: "auto",
@@ -35,8 +36,12 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: "rotate(180deg)",
   },
-  pos: {
-    marginBottom: 12,
+  phoneEmailStyle: {
+    margin: 12,
+    fontSize: 14,
+  },
+  companyNameStyle: {
+    marginTop: 17,
   },
 }));
 const CardUser = () => {
@@ -58,26 +63,26 @@ const CardUser = () => {
     getResult();
   }, []);
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>____________________</span>;
+  const bull = <span className={classes.bullet}>_______________________</span>;
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
+        <Typography className={classes.catchPhraseStyle} gutterBottom>
           {company.catchPhrase}
         </Typography>
         <Typography>{bull}</Typography>
-        <Typography mt="17px" variant="h5" component="h2">
+        <Typography
+          className={classes.companyNameStyle}
+          variant="h4"
+          component="h2"
+        >
           {company.name}
         </Typography>
         <Typography>{bull}</Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Typography className={classes.phoneEmailStyle}>
           {data.phone} {"/"} {data.email}
         </Typography>
         <Typography variant="body2" component="p">

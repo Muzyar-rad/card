@@ -51,7 +51,7 @@ const CardUser = () => {
   const [data, setData] = useState({});
   const [address, setAddress] = useState({});
   const [company, setCompany] = useState({});
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const getResult = async () => {
